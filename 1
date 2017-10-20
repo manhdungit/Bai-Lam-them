@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	//Con tro goc A = {1,2,..,n}
+	int *A;
+	int n; cin >> n;
+	A = new int[n];
+	if (n == 1) goto label1;
+	for (int i = 0; i < n; i++)
+	{
+		*(A + i) = i + 1;
+	}
+	//Tao mang tam ghi du lieu
+	int *B;
+	B = new int[n/2+1];
+	//Bien status luu trang thai ban tron
+	bool status = true;
+	//Loop thu dan gia tri *B ve gia tri output
+	while (n > 1)
+	{
+		int tempn = 0;
+		for (int i = 0; i < n; i++)
+		{
+			if (status)
+			{
+				tempn++;
+				B[tempn-1] = *(A + i);
+			}
+			status = !status;
+		}
+		n = tempn;
+		A = B;
+	} 
+	cout << *B;
+	delete A, B;
+	cout << "\n";
+	system("pause");
+label1: cout << "1";
+	system("pause");
+	return 0;
+
+}
